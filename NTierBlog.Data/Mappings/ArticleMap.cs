@@ -19,7 +19,8 @@ namespace NTierBlog.Data.Mappings
 				CreatedBy = "Admin Test",
 				CreatedDate = DateTime.Now,
 				IsDeleted = false,
-				
+				UserId = Guid.Parse("FF570217-B6EF-4D7C-A132-17CBCC48A469")
+
 			},
 			new Article
 			{
@@ -32,7 +33,8 @@ namespace NTierBlog.Data.Mappings
 				CreatedBy = "Admin Test",
 				CreatedDate = DateTime.Now,
 				IsDeleted = false,
-				
+				UserId = Guid.Parse("02DE2D9C-D3E4-4BAA-B374-8F4D49265596")
+
 			});
 		}
 	}
