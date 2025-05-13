@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using NTierBlog.Entity.Entities;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NTierBlog.Data.Context
 {
-	public class AppDbContext : DbContext
+	public class AppDbContext : IdentityDbContext<AppUser,AppRole,Guid,AppUserClaim,AppUserRole,AppUserLogin,AppRoleClaim,AppUserToken>
 	{
 		public AppDbContext()
 		{
@@ -28,7 +29,7 @@ namespace NTierBlog.Data.Context
 		{
 			base.OnConfiguring(optionsBuilder);
 
-			// PendingModelChangesWarning uyarısını bastır
+			// PendingModelChangesWarning uyarısını bastırdım.
 			optionsBuilder.ConfigureWarnings(warnings =>
 				warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
 		}
