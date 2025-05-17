@@ -13,6 +13,7 @@ namespace NTierBlog.Service.Extensions
 
 
 			services.AddScoped<IArticleService, ArticleService>();
+			services.AddScoped<ICategoryService, CategoryService>();
 
 			services.AddAutoMapper(assembly);
 			return services;

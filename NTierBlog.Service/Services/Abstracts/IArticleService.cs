@@ -10,6 +10,8 @@ namespace NTierBlog.Service.Services.Abstracts
 {
 	public interface IArticleService
 	{
-		Task<List<ArticleDto>> GetAllArticlesAsync();
+		Task<List<ArticleDto>> GetAllArticlesWithCategoryNonDeletedAsync();
+
+		Task CreateArticleAsync(ArticleAddDto articleAddDto);
 	}
 }

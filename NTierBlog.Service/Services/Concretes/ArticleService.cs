@@ -21,9 +21,25 @@ namespace NTierBlog.Service.Services.Concretes
 			this.unitOfWork = unitOfWork;
 			this.mapper = mapper;
 		}
-		public async Task<List<ArticleDto>> GetAllArticlesAsync()
+
+		public async Task CreateArticleAsync(ArticleAddDto articleAddDto)
 		{
-			var articles = await unitOfWork.GetRepository<Article>().GetAllAsync();
+			var userId = Guid.Parse("FF570217-B6EF-4D7C-A132-17CBCC48A469");
+
+			var article = new Article
+			{
+				Title = articleAddDto.Title,
+				Content = articleAddDto.Content,
+				CategoryId = articleAddDto.CategoryId,
+				UserId = userId
+			};
+			await unitOfWork.GetRepository<Article>().AddAsync(article);
+			await unitOfWork.SaveAsync();
+		}
+
+		public async Task<List<ArticleDto>> GetAllArticlesWithCategoryNonDeletedAsync()
+		{
+			var articles = await unitOfWork.GetRepository<Article>().GetAllAsync(x => !x.IsDeleted, x => x.Category);
 			var map = mapper.Map<List<ArticleDto>>(articles);
 			return map;
 
