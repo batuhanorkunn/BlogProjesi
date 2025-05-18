@@ -11,7 +11,8 @@ namespace NTierBlog.Service.Services.Abstracts
 	public interface IArticleService
 	{
 		Task<List<ArticleDto>> GetAllArticlesWithCategoryNonDeletedAsync();
-
+		Task<ArticleDto> GetArticleWithCategoryNonDeletedAsync(Guid articleId);
+		Task UpdateArticleAsync(ArticleUpdateDto articleUpdateDto);
 		Task CreateArticleAsync(ArticleAddDto articleAddDto);
 	}
 }
