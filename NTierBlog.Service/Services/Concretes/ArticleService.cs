@@ -25,14 +25,9 @@ namespace NTierBlog.Service.Services.Concretes
 		public async Task CreateArticleAsync(ArticleAddDto articleAddDto)
 		{
 			var userId = Guid.Parse("FF570217-B6EF-4D7C-A132-17CBCC48A469");
-
-			var article = new Article
-			{
-				Title = articleAddDto.Title,
-				Content = articleAddDto.Content,
-				CategoryId = articleAddDto.CategoryId,
-				UserId = userId
-			};
+			var imageId = Guid.Parse("F71F4B9A-AA60-461D-B398-DE31001BF214");
+			var article = new Article(articleAddDto.Title, articleAddDto.Content, userId, articleAddDto.CategoryId,imageId);
+			
 			await unitOfWork.GetRepository<Article>().AddAsync(article);
 			await unitOfWork.SaveAsync();
 		}
@@ -62,5 +57,16 @@ namespace NTierBlog.Service.Services.Concretes
 			await unitOfWork.GetRepository<Article>().UpdatedAsync(article);
 			await unitOfWork.SaveAsync();
 		}
+		public async Task SafeDeleteArticleAsync(Guid articleId)
+		{
+			var article = await unitOfWork.GetRepository<Article>().GetByGuidAsync(articleId);
+
+			article.IsDeleted = true;
+			article.DeletedDate = DateTime.Now;
+
+			await unitOfWork.GetRepository<Article>().UpdatedAsync(article);
+			await unitOfWork.SaveAsync();
+		}
+
 	}
 }

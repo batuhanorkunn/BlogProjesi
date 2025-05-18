@@ -37,7 +37,7 @@ namespace NTierBlog.Web.Areas.Admin.Controllers
 		public async Task<IActionResult> Add(ArticleAddDto articleAddDto)
 		{
 			await articleService.CreateArticleAsync(articleAddDto);
-			RedirectToAction("Index", "Article", new { Area = "Admin" });
+			return RedirectToAction("Index", "Article", new { Area = "Admin" });
 
 
 			var categories = await categoryService.GetAllCategoriesNonDeleted();
@@ -64,6 +64,12 @@ namespace NTierBlog.Web.Areas.Admin.Controllers
 			articleUpdateDto.Categories = categories;
 
 			return View(articleUpdateDto);
+		}
+		public async Task<IActionResult> Delete(Guid articleId)
+		{
+		    await articleService.SafeDeleteArticleAsync(articleId);
+
+			return RedirectToAction("Index", "Article", new { Area = "Admin" });
 		}
 	}
 }

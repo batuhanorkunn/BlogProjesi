@@ -13,6 +13,7 @@ namespace NTierBlog.Service.Services.Abstracts
 		Task<List<ArticleDto>> GetAllArticlesWithCategoryNonDeletedAsync();
 		Task<ArticleDto> GetArticleWithCategoryNonDeletedAsync(Guid articleId);
 		Task UpdateArticleAsync(ArticleUpdateDto articleUpdateDto);
+		Task SafeDeleteArticleAsync(Guid articleId);
 		Task CreateArticleAsync(ArticleAddDto articleAddDto);
 	}
 }
