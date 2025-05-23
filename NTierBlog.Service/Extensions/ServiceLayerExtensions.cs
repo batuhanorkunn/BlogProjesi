@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NTierBlog.Service.FluentValidations;
 using NTierBlog.Service.Services.Abstracts;
@@ -18,6 +19,8 @@ namespace NTierBlog.Service.Extensions
 
 			services.AddScoped<IArticleService, ArticleService>();
 			services.AddScoped<ICategoryService, CategoryService>();
+
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 			services.AddAutoMapper(assembly);
 
