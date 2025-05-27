@@ -29,8 +29,9 @@ namespace NTierBlog.Service.Services.Concretes
 			this.unitOfWork = unitOfWork;
 			this.mapper = mapper;
 			this.httpContextAccessor = httpContextAccessor;
-			this.imageHelper = imageHelper;
 			_user = httpContextAccessor.HttpContext.User;
+			this.imageHelper = imageHelper;
+	
 		}
 
 		public async Task CreateArticleAsync(ArticleAddDto articleAddDto)
