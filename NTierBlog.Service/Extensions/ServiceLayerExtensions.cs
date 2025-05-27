@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NTierBlog.Service.FluentValidations;
+using NTierBlog.Service.Helpers.Images;
 using NTierBlog.Service.Services.Abstracts;
 using NTierBlog.Service.Services.Concretes;
 using System.Globalization;
@@ -19,6 +20,7 @@ namespace NTierBlog.Service.Extensions
 
 			services.AddScoped<IArticleService, ArticleService>();
 			services.AddScoped<ICategoryService, CategoryService>();
+			services.AddScoped<IImageHelper, ImageHelper>();
 
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

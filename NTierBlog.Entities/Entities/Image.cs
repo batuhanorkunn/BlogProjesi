@@ -1,4 +1,5 @@
 ﻿using NTierBlog.Core.Entities;
+using NTierBlog.Entity.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,11 @@ namespace NTierBlog.Entity.Entities
 		{
 			
 		}
-		public Image(string fileName, string fileType)
+		public Image(string fileName, string fileType , string createdBy)
 		{
 			FileName = fileName;
 			FileType = fileType;
+			CreatedBy = createdBy;
 		}
 		public string FileName { get; set; }
 		public string FileType { get; set; }
